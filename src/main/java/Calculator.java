@@ -6,7 +6,7 @@ public class Main {
     static final String REGEX = "^M*(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
 
     public static void main (String[] args) {
-        System.out.println("Введите выражение [2+2] или два римских числа от I до X:[V+V] + Enter ");
+        System.out.println("Введите выражение [2 + 2] или два римских числа от I до X:[V + V] + Enter ");
         String userInput = scanner.nextLine();
         String[] words = userInput.split(" ");
         if(words.length != 3) throw new IllegalArgumentException("Вы ввели неправильный формат ввода.");
