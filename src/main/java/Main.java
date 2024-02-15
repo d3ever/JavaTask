@@ -30,7 +30,7 @@ public class Main {
     }
 
     public static int getResult(int x, int y, char oper) {
-        if((x < 1 || x > 10) && (y < 1 || y > 10)) throw new NumberFormatException("Вы можете использовать числа больше 10 или меньше 1");
+        if((x < 1 || x > 10) && (y < 1 || y > 10)) throw new NumberFormatException("Вы не можете использовать числа больше 10 и меньше 1");
         return switch (oper) {
             case '-' -> x - y;
             case '+' -> x + y;
