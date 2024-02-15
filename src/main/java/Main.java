@@ -6,7 +6,7 @@ public class Main {
     static final String REGEX = "^M*(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$";
 
     public static void main (String[] args) {
-        System.out.println("Введите выражение [2+2] или два римских числа от I до X:[V+V] + Enter ");
+        System.out.println("Введите выражение [2 + 2] или два римских числа от I до X:[V + V] + Enter ");
         String userInput = scanner.nextLine();
         String[] words = userInput.split(" ");
         if(words.length != 3) throw new IllegalArgumentException("Вы ввели неправильный формат ввода.");
@@ -19,16 +19,18 @@ public class Main {
         String first = args[0];
         String second = args[2];
         char operator = getOperator(args[1]);
-        boolean roman;
-
         if(operator == '?') throw new IllegalArgumentException("Вы ввели неправильный оператор, доступные операторы: [/, *, -, +]");
+        if(isRomanNumbers(first) && isRomanNumbers(second)) {
+            int result = getResult(romanToInteger(first), romanToInteger(second), operator);
+            if(result < 1) throw new NumberFormatException("Результат отрицательный, попробуйте повторно выполнить рассчет.");
+            return getRomanNumber(result);
+        }
 
-        roman = isRomanNumbers(first) && isRomanNumbers(second);
-        if(roman) return getRomanNumber(getResult(romanToInteger(first), romanToInteger(second), operator));
         return String.valueOf(getResult(Integer.parseInt(first), Integer.parseInt(second), operator));
     }
 
     public static int getResult(int x, int y, char oper) {
+        if((x < 1 || x > 10) && (y < 1 || y > 10)) throw new NumberFormatException("Вы можете использовать числа больше 10 или меньше 1");
         return switch (oper) {
             case '-' -> x - y;
             case '+' -> x + y;
