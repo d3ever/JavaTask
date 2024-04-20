@@ -22,6 +22,7 @@ public class Main {
         if(operator == '?') throw new IllegalArgumentException("Вы ввели неправильный оператор, доступные операторы: [/, *, -, +]");
         if(isRomanNumbers(first) && isRomanNumbers(second)) {
             int result = getResult(romanToInteger(first), romanToInteger(second), operator);
+            if(result > 10) throw new NumberFormatException("Результат не может быть больше 10.");
             if(result < 1) throw new NumberFormatException("Результат отрицательный, попробуйте повторно выполнить рассчет.");
             return getRomanNumber(result);
         }
